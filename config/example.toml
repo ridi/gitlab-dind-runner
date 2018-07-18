@@ -1,0 +1,23 @@
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "Example"
+  url = "https://gitlab.yourhost.com/"
+  token = "RUNNER_TOKEN"
+  executor = "docker"
+  builds_dir = "/builds"
+  cache_dir = "/cache"
+  [runners.docker]
+    host = "tcp://docker-daemon:2375"
+    tls_verify = false
+    image = "alpine:3.8"
+    privileged = false
+    disable_cache = false
+    volumes = [
+      "/var/run/docker.sock:/var/run/docker.sock",
+      "/srv/gitlab-runner/cache:/cache",
+      "/srv/gitlab-runner/builds:/builds",
+    ]
+    shm_size = 0
+  [runners.cache]

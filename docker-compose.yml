@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+  docker-daemon:
+    image: docker:18.03.1-ce-dind
+    privileged: true
+    command: ["--storage-driver=overlay2"]
+    volumes:
+      - docker-cache:/var/lib/docker
+      - runner-cache:/srv/gitlab-runner/cache
+      - runner-builds:/srv/gitlab-runner/builds
+    networks:
+      - gitlab-runner-net
+
+  runner:
+    image: gitlab/gitlab-runner:alpine-v11.0.2
+    volumes:
+      - ./config:/etc/gitlab-runner
+    networks:
+      - gitlab-runner-net
+
+networks:
+  gitlab-runner-net:
+
+
+volumes:
+  docker-cache:
+  runner-cache:
+  runner-builds:
