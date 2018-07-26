@@ -10,7 +10,9 @@ services:
       - cache:/srv/gitlab-runner/cache
       - builds:/srv/gitlab-runner/builds
     networks:
-      - gitlab-runner-net
+      gitlab-runner-net:
+        aliases:
+          - host.docker.gitlab
 
   runner:
     image: gitlab/gitlab-runner:${RUNNER_IMAGE_TAG}
