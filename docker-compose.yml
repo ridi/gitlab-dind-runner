@@ -1,14 +1,14 @@
 version: '3.6'
 
 services:
-  docker-daemon:
+  docker:
     image: docker:18.03.1-ce-dind
     privileged: true
     command: ["--storage-driver=overlay2"]
     volumes:
-      - docker-cache:/var/lib/docker
-      - runner-cache:/srv/gitlab-runner/cache
-      - runner-builds:/srv/gitlab-runner/builds
+      - docker_lib:/var/lib/docker
+      - cache:/srv/gitlab-runner/cache
+      - builds:/srv/gitlab-runner/builds
     networks:
       - gitlab-runner-net
 
@@ -24,6 +24,6 @@ networks:
 
 
 volumes:
-  docker-cache:
-  runner-cache:
-  runner-builds:
+  docker_lib:
+  cache:
+  builds:
