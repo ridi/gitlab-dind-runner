@@ -5,6 +5,8 @@ set -e
 # Variables
 COMMAND=${1}
 
+export RUNNER_IMAGE_TAG=alpine-v11.0.2
+
 function print_usage
 {
     echo

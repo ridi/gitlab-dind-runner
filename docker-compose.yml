@@ -13,7 +13,7 @@ services:
       - gitlab-runner-net
 
   runner:
-    image: gitlab/gitlab-runner:alpine-v11.0.2
+    image: gitlab/gitlab-runner:${RUNNER_IMAGE_TAG}
     volumes:
       - ./config:/etc/gitlab-runner
     networks:
