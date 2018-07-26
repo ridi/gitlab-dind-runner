@@ -7,8 +7,8 @@ services:
     command: ["--storage-driver=overlay2"]
     volumes:
       - docker_lib:/var/lib/docker
-      - cache:/srv/gitlab-runner/cache
-      - builds:/srv/gitlab-runner/builds
+      - cache:/cache
+      - builds:/builds
     networks:
       gitlab-runner-net:
         aliases:
