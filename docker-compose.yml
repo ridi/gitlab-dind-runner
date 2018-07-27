@@ -20,6 +20,8 @@ services:
       - ./config:/etc/gitlab-runner
     networks:
       - gitlab-runner-net
+    depends_on:
+      - docker
 
 networks:
   gitlab-runner-net:
