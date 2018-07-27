@@ -29,7 +29,7 @@ if [[ -z ${COMMAND} ]]
 then
     echo "No command specified."
     print_usage
-    exit 1;
+    exit 1
 fi
 
 if [[ ${COMMAND} == "status" ]]; then docker-compose ps
@@ -39,5 +39,5 @@ elif [[ ${COMMAND} == "restart" ]]; then docker-compose restart
 else
     echo "${COMMAND} is undefined."
     print_usage
-    exit 1;
+    exit 1
 fi

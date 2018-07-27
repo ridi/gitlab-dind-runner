@@ -32,6 +32,7 @@ docker-compose exec -T runner gitlab-runner register \
     --executor docker \
     --docker-host tcp://host.docker.gitlab:2375 \
     --docker-image alpine:3.8 \
+    --docker-privileged \
     --docker-volumes /var/run/docker.sock:/var/run/docker.sock \
-    --docker-volumes /srv/gitlab-runner/cache:/cache \
-    --docker-volumes /srv/gitlab-runner/builds:/builds
+    --docker-volumes /cache:/cache \
+    --docker-volumes /builds:/builds
