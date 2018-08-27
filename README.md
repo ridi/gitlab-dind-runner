@@ -4,15 +4,20 @@ Inspired by https://medium.com/@tonywooster/docker-in-docker-in-gitlab-runners-2
 
 ## Usage
 ```bash
-# Create Docker containers
+# Run service
 bin/service.sh start
 
-# Register runner to GitLab CI server
-bin/register_runner.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name
+# Register to GitLab CI server
+bin/runner/register.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name
+# Unregister
+bin/runner/unregister.sh RUnNErtokEN
 
-# Unregister runner
-bin/unregister_runner.sh RUnNErtokEN
+# Clean unused Docker resources
+bin/docker/prune.sh container
+bin/docker/prune.sh volume
+bin/docker/prune.sh image
+bin/docker/prune.sh network
 
-# Remove Docker containers
+# Stop service
 bin/service.sh stop
 ```

@@ -10,10 +10,10 @@ RUNNER_NAME=${3}
 function print_usage
 {
     echo
-    echo "Usage: register_runner.sh <CI_SERVER_URL> <REGISTER_TOKEN> <RUNNER_NAME>"
+    echo "Usage: register.sh <CI_SERVER_URL> <REGISTER_TOKEN> <RUNNER_NAME>"
     echo
     echo "Example:"
-    echo "  register_runner.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name"
+    echo "  register.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name"
 }
 
 if [[ ${#} != 3 ]]
@@ -22,7 +22,9 @@ then
     exit 1
 fi
 
-docker-compose exec -T runner gitlab-runner register \
+docker-compose exec -T runner \
+    gitlab-runner \
+    register \
     --non-interactive \
     --url "${CI_SERVER_URL}" \
     --name "${RUNNER_NAME}" \

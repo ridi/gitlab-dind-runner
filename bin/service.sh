@@ -25,7 +25,7 @@ then
     exit 1
 fi
 
-if [[ -z ${COMMAND} ]]
+if [[ -z "${COMMAND}" ]]
 then
     echo "No command specified."
     print_usage
