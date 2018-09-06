@@ -5,7 +5,7 @@ set -e
 # Variables
 COMMAND=${1}
 
-export RUNNER_IMAGE_TAG=alpine-v11.0.2
+export RUNNER_IMAGE_TAG=alpine-v11.2.0
 
 function print_usage
 {

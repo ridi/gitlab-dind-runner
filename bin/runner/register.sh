@@ -3,23 +3,42 @@
 set -e
 
 # Variables
-CI_SERVER_URL=${1}
-REGISTER_TOKEN=${2}
-RUNNER_NAME=${3}
+RUNNER_NAME=${1}
+CI_SERVER_URL=${2}
+REGISTER_TOKEN=${3}
+CONFIG_PATH=config/config.toml
 
 function print_usage
 {
     echo
-    echo "Usage: register.sh <CI_SERVER_URL> <REGISTER_TOKEN> <RUNNER_NAME>"
+    echo "Usage: register.sh <RUNNER_NAME> <CI_SERVER_URL> <REGISTER_TOKEN>"
     echo
     echo "Example:"
-    echo "  register.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name"
+    echo "  register.sh runner_name https://gitlab.ridi.io/ RegiSTeRTokeN"
 }
 
 if [[ ${#} != 3 ]]
 then
     print_usage
     exit 1
+fi
+
+if [[ -f "${CONFIG_PATH}" ]]
+then
+    RE="\\[\\[runners\\]\\]"
+    RE="${RE}[^\\[]*"
+    RE="${RE}name = \\\"${RUNNER_NAME}\\\""
+    RE="${RE}[^\\[]*"
+    RE="${RE}url = \\\"${CI_SERVER_URL}\\\""
+    RE="${RE}[^\\[]*"
+    RE="${RE}token = \\\"([^\\\"]*)\\\""
+    RE="${RE}[^\\[]*"
+
+    if [[ $(cat "${CONFIG_PATH}") =~ ${RE} ]]
+    then
+        echo "The runner \"${RUNNER_NAME}\" already exists."
+        exit 1
+    fi
 fi
 
 docker-compose exec -T runner \

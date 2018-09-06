@@ -8,9 +8,9 @@ Inspired by https://medium.com/@tonywooster/docker-in-docker-in-gitlab-runners-2
 bin/service.sh start
 
 # Register to GitLab CI server
-bin/runner/register.sh https://gitlab.ridi.io/ RegiSTeRTokeN runner_name
+bin/runner/register.sh runner_name https://gitlab.ridi.io/ RegiSTeRTokeN
 # Unregister
-bin/runner/unregister.sh RUnNErtokEN
+bin/runner/unregister.sh runner_name
 
 # Clean unused Docker resources
 bin/docker/prune.sh container
