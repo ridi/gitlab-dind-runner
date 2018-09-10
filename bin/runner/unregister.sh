@@ -4,6 +4,7 @@ set -e
 
 # Variables
 RUNNER_NAME=${1}
+CONFIG_PATH=config/config.toml
 
 function print_usage
 {
@@ -35,7 +36,7 @@ RE="${RE}[^\\[]*"
 RE="${RE}token = \\\"([^\\\"]*)\\\""
 RE="${RE}[^\\[]*"
 
-if [[ $(cat config/config.toml) =~ ${RE} ]]
+if [[ $(cat "${CONFIG_PATH}") =~ ${RE} ]]
 then
     CI_SERVER_URL=${BASH_REMATCH[1]}
     RUNNER_TOKEN=${BASH_REMATCH[2]}
